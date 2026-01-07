@@ -1,2 +1,3 @@
-2026/01/07-02:09:08.300 15c0e8 Creating DB /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Service Worker/Database since it was missing.
-2026/01/07-02:09:08.354 15c0e8 Reusing MANIFEST /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Service Worker/Database/MANIFEST-000001
+2026/01/07-14:58:31.845 1aeb51 Reusing MANIFEST /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Service Worker/Database/MANIFEST-000001
+2026/01/07-14:58:31.951 1aeb51 Recovering log #3
+2026/01/07-14:58:31.952 1aeb51 Reusing old log /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Service Worker/Database/000003.log 

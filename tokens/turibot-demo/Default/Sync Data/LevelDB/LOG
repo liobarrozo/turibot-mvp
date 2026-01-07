@@ -1,2 +1,3 @@
-2026/01/07-02:09:00.666 15c0e5 Creating DB /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Sync Data/LevelDB since it was missing.
-2026/01/07-02:09:00.874 15c0e5 Reusing MANIFEST /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Sync Data/LevelDB/MANIFEST-000001
+2026/01/07-14:58:31.740 1aeb50 Reusing MANIFEST /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Sync Data/LevelDB/MANIFEST-000001
+2026/01/07-14:58:31.951 1aeb50 Recovering log #3
+2026/01/07-14:58:31.952 1aeb50 Reusing old log /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Sync Data/LevelDB/000003.log 

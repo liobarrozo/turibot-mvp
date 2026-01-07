@@ -1,11 +1,15 @@
-2026/01/07-02:09:02.674 15c18a Creating DB /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Local Storage/leveldb since it was missing.
-2026/01/07-02:09:02.748 15c18a Reusing MANIFEST /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Local Storage/leveldb/MANIFEST-000001
-2026/01/07-03:31:05.028 15c18d Level-0 table #5: started
-2026/01/07-03:31:05.238 15c18d Level-0 table #5: 16488 bytes OK
-2026/01/07-03:31:05.295 15c18d Delete type=0 #3
-2026/01/07-05:28:05.200 15c18d Level-0 table #7: started
-2026/01/07-05:28:05.282 15c18d Level-0 table #7: 11394 bytes OK
-2026/01/07-05:28:05.348 15c18d Delete type=0 #4
-2026/01/07-07:37:05.390 15c18d Level-0 table #9: started
-2026/01/07-07:37:05.427 15c18d Level-0 table #9: 10759 bytes OK
-2026/01/07-07:37:05.467 15c18d Delete type=0 #6
+2026/01/07-14:58:32.258 1aeba9 Reusing MANIFEST /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Local Storage/leveldb/MANIFEST-000001
+2026/01/07-14:58:32.273 1aeba9 Recovering log #27
+2026/01/07-14:58:32.275 1aeba9 Reusing old log /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Local Storage/leveldb/000027.log 
+2026/01/07-15:01:42.236 1aebaf Level-0 table #31: started
+2026/01/07-15:01:42.272 1aebaf Level-0 table #31: 19395 bytes OK
+2026/01/07-15:01:42.392 1aebaf Delete type=0 #27
+2026/01/07-15:01:42.415 1aebaf Compacting 4@0 + 1@1 files
+2026/01/07-15:01:42.457 1aebaf Generated table #32@0: 227 keys, 10585 bytes
+2026/01/07-15:01:42.457 1aebaf Compacted 4@0 + 1@1 files => 10585 bytes
+2026/01/07-15:01:42.499 1aebaf compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/01/07-15:01:42.503 1aebaf Delete type=2 #28
+2026/01/07-15:01:42.503 1aebaf Delete type=2 #22
+2026/01/07-15:01:42.503 1aebaf Delete type=2 #31
+2026/01/07-15:01:42.503 1aebaf Delete type=2 #19
+2026/01/07-15:01:42.504 1aebaf Delete type=2 #24
