@@ -1,0 +1,11 @@
+2026/01/07-02:09:02.674 15c18a Creating DB /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Local Storage/leveldb since it was missing.
+2026/01/07-02:09:02.748 15c18a Reusing MANIFEST /Users/mac/Documents/dev/projects/turibot-mvp/tokens/turibot-demo/Default/Local Storage/leveldb/MANIFEST-000001
+2026/01/07-03:31:05.028 15c18d Level-0 table #5: started
+2026/01/07-03:31:05.238 15c18d Level-0 table #5: 16488 bytes OK
+2026/01/07-03:31:05.295 15c18d Delete type=0 #3
+2026/01/07-05:28:05.200 15c18d Level-0 table #7: started
+2026/01/07-05:28:05.282 15c18d Level-0 table #7: 11394 bytes OK
+2026/01/07-05:28:05.348 15c18d Delete type=0 #4
+2026/01/07-07:37:05.390 15c18d Level-0 table #9: started
+2026/01/07-07:37:05.427 15c18d Level-0 table #9: 10759 bytes OK
+2026/01/07-07:37:05.467 15c18d Delete type=0 #6

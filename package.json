@@ -1,0 +1,25 @@
+{
+  "name": "turibot-mvp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liobarrozo/turibot-mvp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liobarrozo/turibot-mvp/issues"
+  },
+  "homepage": "https://github.com/liobarrozo/turibot-mvp#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.89.0",
+    "@wppconnect-team/wppconnect": "^1.37.9",
+    "dotenv": "^17.2.3"
+  }
+}
