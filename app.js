@@ -29,12 +29,14 @@ const CATEGORIES = [
 const chatState = {};
 
 wppconnect.create({
-    session: 'turibot-demo', // El nombre de tu sesión
-    catchQR: (base64Qr, asciiQR) => {
-      console.log(asciiQR); 
-    },
+    session: 'turibot-demo', 
+    autoClose: 0, 
     logQR: false, 
-    
+    catchQR: (base64Qr, asciiQR) => {
+        console.log('\n================== ESCANEA EL QR ABAJO ==================\n');
+        console.log(asciiQR); // Esto imprime el dibujo del QR
+        console.log('\n=========================================================\n');
+    },
     puppeteerOptions: {
         headless: true,
         args: [
