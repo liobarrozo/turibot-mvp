@@ -33,7 +33,9 @@ function iniciarBot() {
     wppconnect.create({
         session: 'turibot-demo', 
         autoClose: 0, 
-        logQR: false, 
+        logQR: false,
+        updatesLog: false, 
+        disableWelcome: true, 
         
         catchQR: (base64Qr, asciiQR) => {
             console.log('\n================== ESCANEA EL QR ==================\n');
@@ -51,12 +53,28 @@ function iniciarBot() {
                 '--no-first-run',
                 '--no-zygote',
                 '--single-process', 
-                '--disable-gpu'
+                '--disable-gpu',
+                '--js-flags="--max-old-space-size=256"'
             ]
         }
     })
-    .then((client) => start(client))
-    .catch((error) => console.error('🔥 [FATAL] Error iniciando:', error));
+    .then(async (client) => {
+        
+        const page = client.page;
+        await page.setRequestInterception(true);
+        
+        page.on('request', (req) => {
+            const resourceType = req.resourceType();
+            if (['image', 'stylesheet', 'font', 'media'].includes(resourceType)) {
+                req.abort(); // Bloquear descarga
+            } else {
+                req.continue();
+            }
+        });
+    
+        start(client);
+    })
+    .catch((error) => console.log(error));
 }
 
 
@@ -199,6 +217,11 @@ async function start(client) {
         // await client.sendText(message.from, 'Ups, tuve un error momentáneo. Intenta de nuevo.');
     }
   });
+
+  setTimeout(() => {
+    console.log('♻️ Reinicio programado para limpiar memoria RAM...');
+    process.exit(0); 
+}, 21600000);
 }
 
 // =================================================================
