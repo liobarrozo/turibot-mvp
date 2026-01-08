@@ -39,6 +39,18 @@ wppconnect
     devtools: false,
     autoClose: 0,
     qrTimeout: 0,
+    puppeteerOptions: {
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--no-first-run',
+            '--no-zygote',
+            '--single-process', 
+            '--disable-gpu'
+        ]
+    }
   })
   .then((client) => start(client))
   .catch((error) => console.log(error));
