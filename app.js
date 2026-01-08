@@ -1,8 +1,23 @@
 const wppconnect = require('@wppconnect-team/wppconnect');
+const http = require('http'); // 1. Importar módulo HTTP
 
+// --- TRUCO PARA RAILWAY (SERVIDOR FANTASMA) ---
+// Esto mantiene vivo el contenedor engañando a Railway
+const PORT = process.env.PORT || 3000;
+const server = http.createServer((req, res) => {
+    res.writeHead(200);
+    res.end('Turibot esta vivo y escuchando!');
+});
+server.listen(PORT, () => {
+    console.log(`👻 Servidor Fantasma escuchando en el puerto ${PORT} (Para mantener vivo a Railway)`);
+});
+// ----------------------------------------------
+
+// URL de tu proyecto
 const WEB_URL = 'https://wanderlust.turisuite.com'; 
 
-const OWNER_NUMBER = '5492615997309@c.us'; 
+// 🚨 TU NÚMERO
+const OWNER_NUMBER = '549261XXXXXXX@c.us'; 
 
 const CATEGORIES = [
     { id: 'rutas-del-vino', label: '🍷 Rutas del Vino', description: 'Degustaciones premium y almuerzos.' },
@@ -34,16 +49,13 @@ async function start(client) {
 
   client.onMessage(async (message) => {
     
-    console.log(`📩 Recibido de: ${message.from}`);
-    console.log(`   Tipo: ${message.type}`);
-    console.log(`   Body: ${message.body}`);
-    // ---------------------------------------------
+    // --- LOGS ESPÍA ---
+    console.log(`📩 Recibido de: ${message.from} | Tipo: ${message.type}`);
 
     // 1. Filtros de Seguridad
-    if (message.isGroupMsg) { console.log('❌ Ignorado: Es Grupo'); return; }
+    if (message.isGroupMsg) return;
     if (message.from === 'status@broadcast') return; 
     
-    // Validación de texto
     if (!message.body || typeof message.body !== 'string') {
         console.log('❌ Ignorado: No tiene cuerpo de texto válido');
         return;
@@ -55,7 +67,6 @@ async function start(client) {
     // Inicializar estado
     if (!chatState[user]) {
       chatState[user] = { mode: 'bot', step: 'MAIN_MENU' };
-      console.log(`🆕 Nuevo usuario detectado: ${user}`);
     }
 
     // Reactivación
@@ -66,24 +77,16 @@ async function start(client) {
       return;
     }
 
-    // Chequeo de modo humano
-    if (chatState[user].mode === 'human') {
-        console.log(`⏸️ Ignorado: Usuario ${user} está en modo HUMANO`);
-        return;
-    }
+    if (chatState[user].mode === 'human') return;
 
     // COMANDO VOLVER
     if (['volver', 'menu', 'inicio', '0'].includes(text)) {
         chatState[user].step = 'MAIN_MENU';
-        // await simulateTyping(client, user); <--- COMENTADO PARA PROBAR
         await client.sendText(user, 
             `🔙 *Menú Principal*\n\n1️⃣ Ver Excursiones\n2️⃣ Ubicación\n3️⃣ Tips de Viaje\n4️⃣ Asesor Humano`
         );
         return;
     }
-
-    // --- LÓGICA DE PASOS ---
-    console.log(`⚙️ Procesando paso: ${chatState[user].step} con texto: "${text}"`);
 
     // CASO A: ELIGIENDO CATEGORÍA
     if (chatState[user].step === 'SELECT_CATEGORY') {
@@ -92,8 +95,6 @@ async function start(client) {
         if (!isNaN(selection) && selection > 0 && selection <= CATEGORIES.length) {
             const cat = CATEGORIES[selection - 1]; 
             const link = `${WEB_URL}/explore?category=${cat.id}`;
-
-            // await simulateTyping(client, user); <--- COMENTADO
             await client.sendText(user, 
                 `✅ *${cat.label}*\n📝 ${cat.description}\n\n🔗 *Ver aquí:* ${link}\n\n_Escribe "0" para volver._`
             );
@@ -105,10 +106,8 @@ async function start(client) {
 
     // CASO B: MENÚ PRINCIPAL
     if (chatState[user].step === 'MAIN_MENU') {
-
-        // Saludo (Ampliamos las palabras clave)
+        // Saludo
         if (['hola', 'buenas', 'dias', 'tardes', 'alo', 'hello', 'turibot'].some(w => text.includes(w))) {
-            // await simulateTyping(client, user); <--- COMENTADO
             console.log('✅ Enviando Saludo...');
             await client.sendText(user, 
                 `👋 ¡Hola! Bienvenido a *Wanderlust Viajes*.\n\n` +
@@ -120,7 +119,6 @@ async function start(client) {
             return;
         }
 
-        // OPCIÓN 1
         if (text === '1' || text.includes('excursiones') || text.includes('ver')) {
             chatState[user].step = 'SELECT_CATEGORY'; 
             let menu = '🏔️ *Selecciona una categoría:*\n\n';
@@ -130,19 +128,16 @@ async function start(client) {
             return;
         }
 
-        // OPCIÓN 2
         if (text === '2' || text.includes('ubicacion')) {
             await client.sendText(user, `📍 Estamos en Av. San Martín 123, Mendoza.\n⏰ Lun-Vie 9-18hs.`);
             return;
         }
 
-        // OPCIÓN 3
         if (text === '3' || text.includes('tips')) {
             await client.sendText(user, `🎒 *Tips:* Lleva agua, gorra y abrigo para alta montaña.`);
             return;
         }
 
-        // OPCIÓN 4
         if (text === '4' || text.includes('asesor')) {
             chatState[user].mode = 'human'; 
             await client.sendText(user, '👨‍💻 *Bot pausado.* He notificado a un asesor.');
@@ -151,19 +146,6 @@ async function start(client) {
             await client.sendText(OWNER_NUMBER, `🔔 Alerta: ${contactName} pide humano.`);
             return;
         }
-        
-        // LOG FINAL SI NO ENTRO EN NINGÚN IF
-        console.log('⚠️ El mensaje no coincidió con ninguna opción del menú principal.');
     }
   });
 }
-
-// COMENTAMOS LA FUNCIÓN DE TYPING POR AHORA PARA DESCARTAR ERRORES DE DOCKER
-/*
-async function simulateTyping(client, user) {
-  await client.startTyping(user);
-  const delay = Math.floor(Math.random() * 800) + 500; 
-  await new Promise(resolve => setTimeout(resolve, delay));
-  await client.stopTyping(user);
-}
-*/
