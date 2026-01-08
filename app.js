@@ -106,7 +106,7 @@ async function start(client) {
             await client.sendText(user, 
                 `✅ Excelente elección: *${cat.label}*\n` +
                 `📝 ${cat.description}\n\n` +
-                `🔗 *Mira fechas y precios aquí:*\n${link}\n\n` +
+                `🔗 *Pueden mirar las excursiones de esa categoría aquí:*\n${link}\n\n` +
                 `_Escribe "0" para volver al menú principal._`
             );
         } else {
@@ -122,7 +122,7 @@ async function start(client) {
         if (['hola', 'buenas', 'dias', 'tardes'].some(w => text.includes(w))) {
             await simulateTyping(client, user);
             await client.sendText(user, 
-                `👋 ¡Hola! Bienvenido a *Wanderlust Viajes*.\n\n` +
+                `👋 ¡Hola! Bienvenido a *Wanderlust Turismo*.\n\n` +
                 `1️⃣ Ver Categorías de Excursiones\n` +
                 `2️⃣ Ubicación\n` +
                 `3️⃣ Tips de Viaje\n` +
@@ -140,7 +140,7 @@ async function start(client) {
             CATEGORIES.forEach((cat, index) => {
                 menu += `${index + 1}. ${cat.label}\n`;
             });
-            menu += '\n✍️ *Envía el número de tu interés (ej: 1)*\n🔙 O escribe *0* para volver.';
+            menu += '\n✍️ *Envía el número de tu interés (ej: 1)*\n\n🔙 O escribe *0* para volver atrás.';
 
             await client.sendText(user, menu);
             return;
@@ -165,7 +165,7 @@ async function start(client) {
         
         // 1. Responder al cliente
         await simulateTyping(client, user);
-        await client.sendText(user, '👨‍💻 *Bot pausado.* He notificado a un asesor. Te escribirá pronto por aquí.');
+        await client.sendText(user, '👨‍💻 *Aguarda unos instantes.* Un asesor te escribirá pronto por acá.');
   
         // 2. Notificar al dueño
         // Obtenemos el nombre del perfil (pushname) o usamos 'Cliente' si no tiene
